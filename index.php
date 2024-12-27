@@ -1,6 +1,3 @@
-<?php
-include 'php/db_connect.php';
-?>
 
 <!DOCTYPE html>
 <html lang="es">

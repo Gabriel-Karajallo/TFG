@@ -1,11 +1,3 @@
-<?php
-include 'php/db_connect.php';
-?>
-
-<?php
-// Incluye el archivo de conexión con la base de datos si lo necesitas
-// include('includes/db_connect.php');
-?>
 
 <!DOCTYPE html>
 <html lang="es">
