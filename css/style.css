@@ -1,0 +1,225 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    padding: 0 15px;
+}
+
+/* Sección de bienvenida */
+.welcome-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 15px;
+    background-color: #f8f9fa;
+}
+
+.welcome-text {
+    font-size: 2.1rem;
+    font-weight: bold;
+    color: #3f3f3f;
+    font-family: "Alata", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: "Rubik Mono One", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.buttom-container{
+    width: 100%;
+}
+.btn-custom {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    max-width: 200px;
+    margin: 10px;
+}
+
+.logo {
+    max-width: 250px;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el texto de términos y condiciones */
+.terms-text {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 10px;
+}
+
+/* Estilo para la línea divisoria */
+.my-4 {
+    border-top: 1px solid #636262;
+    width: 80%;
+}
+
+/* Estilo para la disposición en columnas en pantallas grandes */
+@media (min-width: 768px) {
+    .welcome-section {
+        flex-direction: row; /* Disposición en fila para pantallas grandes */
+    }
+    .container{
+        text-align: left;    
+    }
+    .col-md-6 {
+        padding: 0 30px; /* Separación entre las columnas */
+    }
+
+    /* Estilo del logo en pantallas grandes */
+    .logo {
+        max-width: 300px;
+    }
+
+    .welcome-text {
+        font-size: 2.5rem;
+    }
+    .google{
+        height: 20px;
+        margin-right: 5px;
+    }
+    .subtitle {
+        font-size: 1.8rem;
+        color: #47793b;
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+   
+    .custom-btn {
+        font-size: 1.5rem;
+        width: 300px;
+        padding: 5px;
+    }
+
+  
+    #bottoms{
+        color: #ffff;
+        padding: 6px;
+        text-decoration: none;
+    }
+    
+
+    .terms-text {
+        font-size: 0.7rem;
+        text-align: left;
+        width: 250px;
+    }
+    .my-4{
+        width: 300px;
+    }
+}
+
+
+
+/* Media query para dispositivos pequeños (móviles en modo vertical) */
+@media (max-width: 480px) {   
+    .logo {
+        max-width: 200px;
+    }
+    .welcome-text {
+        font-size: 2.3rem;
+        text-align: left;
+        padding: 10px;
+        margin-bottom: 20px;
+        margin-bottom: 50px;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        text-align: left;
+        padding-left: 10px;
+        color: #47793b;
+    } 
+    .buttom-container{
+        width: 100%;
+    }
+
+    .custom-btn {
+        font-size: 1rem;
+        width: 200px;
+        padding: 10px;
+        color: #ffff;
+    }
+    .custom-btn:hover{
+        background-color: #47793b;
+    }
+    #bottoms{
+        color: #ffff;
+        padding: 8px;
+    }
+    .registro-google{
+        width: -webkit-fill-available;
+
+    }
+    .google{
+        height:20px;
+        margin-right: 5px;
+    }
+    .terms-text {
+        font-size: 0.7rem;
+        width: 80%;
+        margin: auto;
+    }
+    .my-4 {
+        width: 80%;
+        margin: auto;
+    }
+}
+
+/* Media query para tabletas en orientación horizontal */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .welcome-text {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1.6rem;
+    }
+
+    .btn-custom {
+        font-size: 1.3rem;
+        width: 220px;
+    }
+
+    .logo {
+        max-width: 270px;
+    }
+
+    .terms-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* Media query para pantallas muy grandes (escritorios muy grandes) */
+@media (min-width: 1200px) {
+    .welcome-text {
+        font-size: 3rem;
+    }
+
+    .subtitle {
+        font-size: 2rem;
+    }
+
+
+    .btn-custom {
+        font-size: 1.8rem;
+        width: 300px;
+    }
+
+    .logo {
+        max-width: 350px;
+    }
+}
