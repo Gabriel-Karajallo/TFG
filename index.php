@@ -60,7 +60,7 @@ include 'php/db_connect.php';
                     <!-- Enlace para iniciar sesión -->
                     <div class="mt-4">
                         <p>¿Ya tienes una cuenta?</p>
-                        <a href="login.php" class="btn custom-btn" id="login-bottom" style="border-color: #84b775;">Iniciar sesión 
+                        <a href="./php/login.php" class="btn custom-btn" id="login-bottom" style="border-color: #84b775;">Iniciar sesión 
                             <svg id="google" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <style>
                               .user-1 {
