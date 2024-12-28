@@ -1,39 +1,53 @@
+<?php
+include 'php/db_connect.php';
+?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesión - BusBici</title>
+    <title>Iniciar Sesión - BusBici</title>
+    <!-- Enlace a Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <!-- Enlace a los estilos personalizados -->
+    <link href="../css/login.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="row">
-            <!-- Columna de login -->
-            <div class="col-12 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="text-center mb-4">Iniciar sesión</h3>
-                        <form action="php/login_process.php" method="POST">
-                            <!-- Campo para el correo -->
+    <div class="login-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Columna del logo -->
+                <div class="col-md-6 text-center text-md-start">
+                    <img src="../img/logo.png" alt="BusBici Logo" class="logo-login">
+                </div>
+                <!-- Columna del formulario -->
+                <div class="col-md-6">
+                    <div class="login-form">
+                        <h2 class="text-center">Inicia Sesión</h2>
+                        <form action="php/login_action.php" method="POST">
                             <div class="mb-3">
-                                <label for="email" class="form-label">Correo electrónico</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Usuario" required>
                             </div>
-                            <!-- Campo para la contraseña -->
                             <div class="mb-3">
-                                <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
                             </div>
-                            <!-- Botón de inicio de sesión -->
-                            <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary w-100" 
+                                style="
+                                    background-color: #84b775;
+                                    border: none;">
+                                    Iniciar Sesión</button>
+                            </div>
                         </form>
-
-                        <!-- Enlace para registro -->
                         <div class="text-center mt-3">
-                            <p>¿No tienes cuenta? <a href="register.php">Regístrate</a></p>
+                            <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+                            <hr>
+                            <a href="#" class="btn btn-danger w-100" style="
+                                    background-color: #84b775;
+                                    border: none;">
+                                    Inicia sesión con Google</a>
+                            <p class="mt-3">¿No tienes cuenta? <a href="register.php">Regístrate aquí</a></p>
                         </div>
                     </div>
                 </div>
@@ -41,7 +55,7 @@
         </div>
     </div>
 
-    <!-- Scripts necesarios para Bootstrap -->
+    <!-- Scripts de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

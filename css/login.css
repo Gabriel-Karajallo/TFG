@@ -1,0 +1,82 @@
+/* General */
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Logo */
+.logo-login {
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+/* Formulario */
+.login-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+}
+
+.login-form {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Botones */
+.btn-primary {
+    background-color: #84b775;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Para pantallas grandes */
+@media (min-width: 992px) {
+    .login-section .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo-login {
+        max-width: 300px;
+    }
+}
+
+/* Para pantallas medianas */
+@media (min-width: 768px) and (max-width: 991px) {
+    .logo-login {
+        max-width: 250px;
+        margin-bottom: 20px;
+    }
+}
+
+/* Para pantallas pequeñas */
+@media (max-width: 480px) {
+    .logo-login {
+        max-width: 200px;
+    }
+
+    .login-form {
+        padding: 50px;
+    }
+}
