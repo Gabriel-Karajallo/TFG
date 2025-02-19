@@ -1,5 +1,37 @@
 <?php
 include 'php/db_connect.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    // Buscar el usuario en la base de datos
+    $sql = "SELECT ID_USUARIO, PASSWORD FROM USUARIO WHERE EMAIL = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($id_usuario, $hashed_password);
+        $stmt->fetch();
+
+        // Verificar contraseña
+        if (password_verify($password, $hashed_password)) {
+            $_SESSION['user_id'] = $id_usuario;
+            $_SESSION['email'] = $email;
+            header("Location: dashboard.php"); // Redirige al panel de usuario
+            exit();
+        } else {
+            echo "Contraseña incorrecta.";
+        }
+    } else {
+        echo "Usuario no encontrado.";
+    }
+
+    $stmt->close();
+    $conn->close();
+}
 ?>
 
 <!DOCTYPE html>
