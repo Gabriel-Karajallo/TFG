@@ -2,7 +2,7 @@
 // dashboard_admin.php
 session_start();
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    // Si no está autenticado como administrador, lo rediriges al login
+    // Si no está autenticado como administrador, lo redirigimos al login
     header("Location: login.php");
     exit();
 }

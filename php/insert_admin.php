@@ -1,6 +1,7 @@
 <?php
-include 'db_connect.php'; // Asegúrate de que la ruta sea correcta
+//ESTE CÓDIGO SOLO FUE USADO PARA CREAR EL USUARIO ADMINISTRATIVO, YA QUE NO TENEMOS FORMULARIO PARA CREAR UNO, NO ES NECESARIO :D
 
+include 'db_connect.php'; // 
 $nombre = "Karly";
 $apellido = "Urbani";
 $direccion = "Oficina Central";

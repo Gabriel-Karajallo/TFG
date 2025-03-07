@@ -14,7 +14,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     // Si la conexión fue exitosa, descomentar la siguiente línea:
-    echo "Conexión exitosa a la base de datos!";
+    // echo "Conexión exitosa a la base de datos!";
 } catch (PDOException $e) {
     // Si ocurre un error en la conexión, mostrar un mensaje de error
     echo "Error de conexión: " . $e->getMessage();

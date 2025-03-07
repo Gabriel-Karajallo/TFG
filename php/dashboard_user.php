@@ -2,7 +2,7 @@
 // dashboard_user.php
 session_start();
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
-    // Si no está autenticado como usuario, lo rediriges al login
+    // Si no está autenticado como usuario, lo redirigimos al login
     header("Location: login.php");
     exit();
 }

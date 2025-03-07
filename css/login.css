@@ -18,7 +18,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-
+    padding: 20px; /* Evita que el contenido se pegue demasiado en pantallas pequeñas */
 }
 
 .login-form {
@@ -72,6 +72,11 @@ body {
 
 /* Para pantallas pequeñas */
 @media (max-width: 480px) {
+    .container{
+        position: absolute;
+        top: 50px;
+    }
+
     .logo-login {
         max-width: 200px;
     }
