@@ -17,16 +17,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     padding: 20px; /* Evita que el contenido se pegue demasiado en pantallas pequeñas */
 }
 
-.login-form {
+/* .login-form {
     background: white;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .login-form h2 {
     margin-bottom: 20px;
@@ -83,5 +82,37 @@ body {
 
     .login-form {
         padding: 50px;
+        background-color: red;
+    }
+    .login-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 20px; /* Evita que el contenido se pegue demasiado en pantallas pequeñas */
+    }
+    
+    /* Estilizar los inputs con solo línea inferior */
+    .form-control {
+        border: none;
+        border-bottom: 1px solid #84b775; /* Línea inferior con color */
+        border-radius: 0;
+        padding: 10px;
+        font-size: 16px;
+        background: transparent;
+        box-shadow: none; /* Evita sombras al hacer clic */
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    /* Cambiar color de la línea al hacer clic en el input */
+    .form-control:focus {
+        border-bottom: 1px solid #5a9c50; /* Color más oscuro al enfocarse */
+        outline: none; /* Eliminar contorno azul por defecto */
+        box-shadow: none;
+    }
+
+    /* Placeholder con efecto translúcido */
+    .form-control::placeholder {
+        color: rgba(0, 0, 0, 0.5);
     }
 }
