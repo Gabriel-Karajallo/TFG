@@ -18,6 +18,31 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px; /* Evita que el contenido se pegue demasiado en pantallas pequeñas */
+    height: 100vh;
+}
+
+/* Asegurar que los inputs dentro de .login-form usen estos estilos */
+.login-form .form-control {
+    border: none;
+    border-bottom: 1px solid #84b775;
+    border-radius: 0;
+    padding: 10px;
+    font-size: 16px;
+    background: transparent;
+    box-shadow: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+/* Foco */
+.login-form .form-control:focus {
+    border-bottom: 1px solid #5a9c50;
+    outline: none;
+    box-shadow: none;
+}
+
+/* Placeholder */
+.login-form .form-control::placeholder {
+    color: rgba(0, 0, 0, 0.5);
 }
 
 /* .login-form {
@@ -52,12 +77,16 @@ body {
 @media (min-width: 992px) {
     .login-section .container {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
     }
 
     .logo-login {
         max-width: 300px;
+    }
+    .login-form{
+        width: 300px;
     }
 }
 
@@ -75,14 +104,11 @@ body {
         position: absolute;
         top: 50px;
     }
-
     .logo-login {
         max-width: 200px;
     }
-
     .login-form {
         padding: 50px;
-        background-color: red;
     }
     .login-section {
         display: flex;
@@ -91,28 +117,23 @@ body {
         height: 100vh;
         padding: 20px; /* Evita que el contenido se pegue demasiado en pantallas pequeñas */
     }
-    
-    /* Estilizar los inputs con solo línea inferior */
-    .form-control {
-        border: none;
-        border-bottom: 1px solid #84b775; /* Línea inferior con color */
-        border-radius: 0;
-        padding: 10px;
-        font-size: 16px;
-        background: transparent;
-        box-shadow: none; /* Evita sombras al hacer clic */
-        transition: border-color 0.3s ease-in-out;
+    .boton_iniciar_sesion{
+        width: 50%;
+        margin: auto;
+        margin-top: 30px;
+        margin-bottom: 25px;
     }
-
-    /* Cambiar color de la línea al hacer clic en el input */
-    .form-control:focus {
-        border-bottom: 1px solid #5a9c50; /* Color más oscuro al enfocarse */
-        outline: none; /* Eliminar contorno azul por defecto */
-        box-shadow: none;
+    .boton_google{
+        width: 70%;
+        margin: auto;
+        margin-top: 25px;
     }
-
-    /* Placeholder con efecto translúcido */
-    .form-control::placeholder {
-        color: rgba(0, 0, 0, 0.5);
+    p a{
+        color: #3d6e36;
+        text-decoration: none;
     }
+    .login-form .form-control {
+    margin-bottom: 20px;
+    }
+  
 }
