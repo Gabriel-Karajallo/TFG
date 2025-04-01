@@ -29,6 +29,7 @@ $bici_id = $bici ? $bici['ID_BICI'] : null;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - BusBici</title>
     <link rel="stylesheet" href="../css/dashboard_user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -72,20 +73,22 @@ $bici_id = $bici ? $bici['ID_BICI'] : null;
                     style="display: <?php echo $bici_id ? 'none' : 'block'; ?>; margin: 0 auto;">Reservar
                     Bici
                 </button>
+                <i id="loading-icon" class="fa fa-spinner fa-spin" style="display: none; color: #8dbe7e;"></i>
             </div>
 
 
             <div id="reserva-info" style="display: <?php echo $bici_id ? 'block' : 'none'; ?>;">
                 <p>Has reservado la bicicleta con ID: <span id="bici-id"><?php echo $bici_id ?: ''; ?></span></p>
-                <button id="cancelar-btn">Cancelar Reserva</button>
+                
                 <div id="contador-reserva" style="display: none;">
                     <p>Tiempo restante para recoger la bici: <span id="tiempo-restante">15:00</span></p>
                 </div>
+                <button id="cancelar-btn">Cancelar Reserva</button>
+                <p id="loading-text" style="display: none;"></p>
             </div>
 
         </section>
     </main>
-    <img id="imagen-inferior" src="../img/sevilla1.jpg" alt="Imagen inferior">
 
     <script src="../js/dashboard_user.js?v=<?php echo time(); ?>"></script>
 </body>

@@ -3,78 +3,105 @@ document.addEventListener("DOMContentLoaded", function () {
     let cancelarBtn = document.getElementById("cancelar-btn");
     let reservaInfo = document.getElementById("reserva-info");
     let biciIdSpan = document.getElementById("bici-id");
-    let contadorTexto = document.getElementById("contador-reserva"); // Elemento para mostrar el contador
-    let loadingText = document.getElementById("loading-text"); // Mensaje de "Cancelando reserva..."
-    let contadorInterval; // Variable para almacenar el intervalo del contador
+    let contadorTexto = document.getElementById("contador-reserva"); 
+    let loadingIcon = document.getElementById("loading-icon"); 
+    let loadingText = document.getElementById("loading-text"); 
+    let contadorInterval; 
+
+    // Recuperar datos de la reserva almacenada al recargar la página
+    let reservaActiva = localStorage.getItem("reserva_activa");
+    let tiempoExpiracion = localStorage.getItem("reserva_expiracion");
+
+    if (reservaActiva && tiempoExpiracion) {
+        let tiempoRestante = Math.floor((parseInt(tiempoExpiracion) - Date.now()) / 1000);
+        if (tiempoRestante > 0) {
+            biciIdSpan.textContent = reservaActiva;
+            reservaInfo.style.display = "block";
+            cancelarBtn.style.display = "block"; // Mostrar botón de cancelar
+            iniciarContador(tiempoRestante);
+        } else {
+            localStorage.removeItem("reserva_activa");
+            localStorage.removeItem("reserva_expiracion");
+        }
+    }
 
     if (reservarBtn) {
         reservarBtn.addEventListener("click", function () {
             console.log("🔄 Reservando bicicleta...");
             reservarBtn.style.display = "none";
-            
+            loadingIcon.style.display = "inline-block"; // Mostrar icono de carga
+
             fetch("../php/reservar_bici.php", { method: "POST" })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        biciIdSpan.textContent = data.bici_id;
-                        reservaInfo.style.display = "block";
-                        iniciarContador(15 * 60); // Iniciar contador de 15 minutos
+                        let tiempoActual = Date.now();
+                        let tiempoExpira = tiempoActual + 15 * 60 * 1000; // 15 minutos en milisegundos
+
+                        localStorage.setItem("reserva_activa", data.bici_id);
+                        localStorage.setItem("reserva_expiracion", tiempoExpira);
+
+                        setTimeout(() => {
+                            loadingIcon.style.display = "none"; // Ocultar icono de carga
+                            biciIdSpan.textContent = data.bici_id;
+                            reservaInfo.style.display = "block";
+                            cancelarBtn.style.display = "block"; // Mostrar botón de cancelar
+                            iniciarContador(15 * 60);
+                        }, 2000); // Retraso de 2 segundos antes de mostrar la reserva
                     } else {
                         alert(data.error);
-                        reservarBtn.style.display = "block"; // Mostrar botón si falla
+                        loadingIcon.style.display = "none"; 
+                        reservarBtn.style.display = "block";
                     }
                 })
                 .catch(error => {
                     console.error("Error en la petición:", error);
-                    reservarBtn.style.display = "block"; // Mostrar botón si hay error
+                    loadingIcon.style.display = "none"; 
+                    reservarBtn.style.display = "block";
                 });
         });
     }
 
     if (cancelarBtn) {
         cancelarBtn.addEventListener("click", function () {
-            cancelarBtn.style.display = "none"; // Ocultar el botón de cancelar antes
+            cancelarBtn.style.display = "none";
             reservaInfo.style.display = "none";  
+            loadingIcon.style.display = "inline-block"; // Mostrar icono de carga
             loadingText.textContent = "Cancelando reserva...";
-            loadingText.style.display = "block"; // Mostrar mensaje de cancelación
-        
+            loadingText.style.display = "block";
+
             fetch("../php/cancelar_reserva.php", { method: "POST" })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
+                        localStorage.removeItem("reserva_activa");
+                        localStorage.removeItem("reserva_expiracion");
                         biciIdSpan.textContent = "";
-                        detenerContador(); // Detener contador al cancelar
+                        detenerContador();
 
-                        // Esperar 2 segundos antes de mostrar el botón de reservar
                         setTimeout(() => {
-                            loadingText.style.display = "none"; // Ocultar mensaje
-                            loadingText.textContent = ""; // Limpiar el mensaje
-                            reservarBtn.style.display = "block"; // Mostrar botón de reservar
-                        }, 2000);
+                            loadingIcon.style.display = "none"; // Ocultar icono de carga
+                            loadingText.style.display = "none"; 
+                            loadingText.textContent = "";
+                            reservarBtn.style.display = "block"; 
+                        }, 2000); // Retraso de 2 segundos antes de mostrar el botón de reservar
                     } else {
                         alert(data.error);
-                        cancelarBtn.style.display = "block"; // Volver a mostrar el botón si hay error
+                        cancelarBtn.style.display = "block"; 
+                        loadingIcon.style.display = "none"; 
                     }
                 })
                 .catch(error => {
                     console.error("Error en la petición:", error);
-                    cancelarBtn.style.display = "block"; // Volver a mostrar el botón si hay error
+                    cancelarBtn.style.display = "block"; 
+                    loadingIcon.style.display = "none"; 
                 });
         });
     }
 
-    document.getElementById("menu-toggle").addEventListener("click", function () {
-        document.getElementById("sidebar").style.left = "0";
-    });
-
-    document.getElementById("close-sidebar").addEventListener("click", function () {
-        document.getElementById("sidebar").style.left = "-250px";
-    });
-
     function iniciarContador(segundos) {
-        detenerContador(); // Asegurar que no haya otro contador corriendo
-        contadorTexto.style.display = "block"; // Hacer visible el contador
-        
+        detenerContador();
+        contadorTexto.style.display = "block";
         actualizarContador(segundos);
 
         contadorInterval = setInterval(() => {
@@ -105,6 +132,8 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    localStorage.removeItem("reserva_activa");
+                    localStorage.removeItem("reserva_expiracion");
                     biciIdSpan.textContent = "";
                     reservaInfo.style.display = "none";
                     reservarBtn.style.display = "block";
@@ -115,4 +144,12 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => console.error("Error en la cancelación automática:", error));
     }
+});
+
+document.getElementById("menu-toggle").addEventListener("click", function () {
+    document.getElementById("sidebar").style.left = "0";
+});
+
+document.getElementById("close-sidebar").addEventListener("click", function () {
+    document.getElementById("sidebar").style.left = "-250px";
 });
